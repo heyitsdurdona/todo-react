@@ -8,17 +8,17 @@ import Footer from './Footer';
 
 export function uiRender({todo, type}){
     if (type == "all"){
-        todo.map((task) => {
+        return todo.map((task) => {
             return <TodoList taskTitle={task.title} taskId={task.id} />
         })
     } else if (type == "active"){
         let res = todo.filter((task) => task.isCompleted === false);    
-        res.map((task) => {
+        return res.map((task) => {
             return <TodoList taskTitle={task.title} taskId={task.id} />
         })
     }else if (type == "completed"){
         let res = todo.filter((task) => task.isCompleted === true);
-        res.map((task) => {
+        return res.map((task) => {
             return <TodoList taskTitle={task.title} taskId={task.id} />
         })
     }
@@ -49,7 +49,6 @@ export default function Header() {
         
         e.target.reset()
     }
-    console.log(uiRender(task, 'all'))
     
     return (
         <>
@@ -70,7 +69,7 @@ export default function Header() {
                     
                     {/* TASK LIST */}
                     <ul className="task-li">
-                        {uiRender(task, 'all')}
+                        {uiRender({todo: task, type: "all"})}
                         {task.length > 0 ? <Footer itemsLeft={task.length} />: undefined}
                     </ul>
                 </div>
