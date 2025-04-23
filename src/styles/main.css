@@ -94,9 +94,16 @@
     padding: 20px 24px;
     border-bottom: 2px solid #E3E4F1;
 
-    background-image: url('../images/delete.svg');
+    /* background-image: url('../images/delete.svg');
     background-repeat: no-repeat;
-    background-position: right 24px center;
+    background-position: right 24px center; */
+    position: relative;
+}
+
+.delete-img {
+    position: absolute;
+    right: 24px;
+    cursor: pointer;
 }
 
 /* checkbox styles */
