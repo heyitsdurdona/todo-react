@@ -2,10 +2,12 @@ import React from 'react'
 import "../styles/main.css"
 import TodoList from './TodoList'
 import Moon from "../images/moon.svg"
+import Sun from "../images/sun.svg"
 import TodoLogo from "../images/todo-logo.svg"
 import Footer from './Footer';
 
 export default function Header({ t, setT, fullTodoList, setFilterType, updateTodo, clearCompleted, deleteTask }) {
+  let currentTheme = localStorage.getItem('theme') || "light";
 
   function addTask(todo) {
     let res = [...fullTodoList, todo];
@@ -31,6 +33,16 @@ export default function Header({ t, setT, fullTodoList, setFilterType, updateTod
     e.target.reset()
   }
 
+  function handleThemeChange(e){
+    e.target.src = e.target.src === Sun ? Moon : Sun;
+    if (e.target.src === Sun) {
+      document.body.classList.remove('dark');
+    } else {
+      document.body.classList.add('dark');
+    }
+    localStorage.setItem('theme', e.target.src === Sun ? 'light' : 'dark');
+  }
+
   return (
     <header className="header">
       <div className="container">
@@ -38,7 +50,7 @@ export default function Header({ t, setT, fullTodoList, setFilterType, updateTod
           <a href="#" className="logo-link">
             <img src={TodoLogo} alt="" className="logo-img" />
           </a>
-          <img className="moon-img" src={Moon} alt="todo logo" />
+          <img onClick={handleThemeChange} className="moon-img" src={Moon} alt="todo logo" />
         </div>
 
         <form onSubmit={submitTask} onInput={checkInput} className='inputForm'>

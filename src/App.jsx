@@ -14,6 +14,7 @@ function App() {
   const updateTodo = (updateTodo) => {
     const updatedList = t.map(todo => todo.id === updateTodo.id? updateTodo : todo);
     setT(updatedList);
+    localStorage.setItem('todos', JSON.stringify(updatedList));
   }
 
   const clearCompleted = () => {
